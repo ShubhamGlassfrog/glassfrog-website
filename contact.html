@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="TemplateMo" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+
+    <title>Education Meeting HTML5 Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css" />
+    <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css" />
+    <link rel="stylesheet" href="assets/css/owl.css" />
+    <link rel="stylesheet" href="assets/css/lightbox.css" />
+    <!--
+
+TemplateMo 569 Edu Meeting
+
+https://templatemo.com/tm-569-edu-meeting
+
+-->
+  </head>
+
+  <body>
+    <!-- Sub Header -->
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="index.html" class="logo">
+                <img src="assets/assets/svg/Logo-Wide.svg" />
+              </a>
+              <!-- ***** Logo End ***** -->
+              <!-- ***** Menu Start ***** -->
+              <ul class="nav">
+                <li class="scroll-to-section">
+                  <a href="#top" class="active">Home</a>
+                </li>
+                <li><a href="about.html">About</a></li>
+                <li class="scroll-to-section"><a href="#apply">Services</a></li>
+
+                <li class="scroll-to-section">
+                  <a href="contact.html" class="active">Contact Us</a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+    <!--Warning Modal-->
+    <app-warning-modal
+      [warning]="warning"
+      [showModal]="showModal.asObservable()"
+    ></app-warning-modal>
+    <!--End Warning Modal-->
+
+    <app-page-banner
+      heading="Hey! Tell us all <br>the things 👋"
+      image="/assets/images/about-banner-picture.webp"
+    ></app-page-banner>
+
+    <section class="page">
+      <div class="container">
+        <form
+          action="#"
+          class="form contact-form"
+          (submit)="submitForm({userName, userEmail, userProject})"
+        >
+          <div class="row">
+            <!--Light Heading-->
+            <div class="col-12">
+              <h2 class="heading-1 -u-color-light-gray ps-0">
+                I am interested in...
+              </h2>
+            </div>
+            <!--End Light Heading-->
+
+            <!--Project Type-->
+            <div class="col-lg-10 form-button-group d-flex flex-wrap">
+              <div
+                class="button button-outline"
+                appMagnetic
+                *ngFor="let project of projectTypes;index as i;"
+                [class.active]="project.active"
+              >
+                <label>{{project.name}}</label>
+                <input
+                  type="checkbox"
+                  name="project-type"
+                  [value]="project.name"
+                  [checked]="project.active"
+                  (click)="project.active = !project.active"
+                />
+              </div>
+            </div>
+            <!--End Project Type-->
+
+            <!--Input Fields-->
+            <div class="col-lg-9">
+              <div class="input-item">
+                <input
+                  type="text"
+                  required
+                  name="userName"
+                  id="userName"
+                  placeholder="Your Name"
+                  #userName
+                />
+              </div>
+              <div class="input-item">
+                <input
+                  type="email"
+                  required
+                  name="userEmail"
+                  id="userEmail"
+                  placeholder="Your Email"
+                  #userEmail
+                />
+              </div>
+              <div class="input-item">
+                <input
+                  type="text"
+                  required
+                  name="userProject"
+                  id="userProject"
+                  placeholder="Tell us all about your project"
+                  #userProject
+                />
+              </div>
+            </div>
+            <!--End Input Fields-->
+
+            <!--Light Heading-->
+            <div class="col-12">
+              <h2 class="heading-1 -u-color-light-gray ps-0">
+                Project Budget USD
+              </h2>
+            </div>
+            <!--End Light Heading-->
+
+            <!--Project Budget-->
+            <div class="col-lg-10 form-button-group d-flex flex-wrap">
+              <div
+                class="button button-outline"
+                appMagnetic
+                *ngFor="let budget of budgets;index as i;"
+                [class.active]="budget.active"
+              >
+                <label>{{budget.name}}</label>
+                <input
+                  type="radio"
+                  name="project-name"
+                  [value]="budget.name"
+                  [checked]="budget.active"
+                  (change)="onBudgetChange(i)"
+                />
+              </div>
+            </div>
+            <!--End Project Budget-->
+
+            <!--Light Heading-->
+            <div class="col-12">
+              <div class="input-item">
+                <label for="attachment" class="title-1 ps-0 cursor-pointer"
+                  ><span class="ms-3">Add Attachment</span></label
+                >
+                <br />
+                <input
+                  type="file"
+                  name="attachment"
+                  id="attachment"
+                  (change)="upload($event)"
+                  accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                  #attachment
+                />
+              </div>
+            </div>
+            <!--End Light Heading-->
+
+            <div class="col-12">
+              <button type="submit" class="paragraph-3" [disabled]="uploading">
+                Send Request
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>
